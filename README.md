@@ -1,4 +1,4 @@
-# PrimeiroProjeto
+# Primeiro projeto
  
 Este projeto foi feito com o intuito de colocar em prática todo conhecimento adquirido cursando Angular.
 
