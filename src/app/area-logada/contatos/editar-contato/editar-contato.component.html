@@ -1,0 +1,60 @@
+<!-- Trabalhando com formulário reativo -->
+<div class="container pt-5">
+
+    <div class="text-center" *ngIf="estaCarregando">
+        <div class="spinner-border" role="status"></div>
+    </div>
+
+    <div *ngIf="erroNoCarregamento">
+        <h3>Deu erro</h3>
+        <!-- <button (click)="carregarContato()">Tentar novamente</button> -->
+    </div>
+
+    <div *ngIf="!estaCarregando && !erroNoCarregamento">
+        <form [formGroup]="contatoForm">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" 
+                id="nome" placeholder="nome" formControlName="nome"
+                [class.is-invalid]="exibeErro('nome')">
+                <!-- formControlName="nome" faz a associação ao input "nome" -->
+            </div>
+
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" 
+                id="cpf" placeholder="cpf" formControlName="cpf"
+                [class.is-invalid]="exibeErro('cpf')">
+                <!-- is invalid para erros de formulario -->
+            </div>
+
+            <div class="form-group">
+                <label for="ag">Agência</label>
+                <input type="number" class="form-control" 
+                id="ag" placeholder="agência" formControlName="ag"
+                [class.is-invalid]="exibeErro('ag')">
+            </div>
+
+            <div class="form-group">
+                <label for="cc">Conta</label>
+                <input type="text" class="form-control" 
+                id="cc" placeholder="conta" formControlName="cc"
+                [class.is-invalid]="exibeErro('cc')">
+            </div>
+
+            <div class="form-group">
+                <label for="banco">Banco</label>
+                <input type="text" class="form-control" 
+                id="banco" placeholder="banco" formControlName="banco"
+                [class.is-invalid]="exibeErro('banco')">
+            </div>
+
+            <div class="pt-4">
+                <button class="btn btn-primary" (click)="onSubmit()">
+                    {{ estaEditando() ? 'Salvar contato' : 'Criar contato' }}</button>
+                    <!-- cria contato caso não tiver passando id de um existente, se nao vira o botao de ediçao de dados -->
+            </div>
+           
+        </form>
+    </div>
+</div>

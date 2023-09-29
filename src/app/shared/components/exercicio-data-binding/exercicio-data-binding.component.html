@@ -1,0 +1,98 @@
+<!--Property binding-->
+<h2>Exemplos Property Biding</h2>
+
+<p>Plavra: {{ palavra }}</p>
+<p>Cor: {{ cor }}</p>
+
+<input type="text" [value]="initialValue">
+<!-- [] usado para informar que será colocado uma variavel ou função -->
+
+<br><br>
+
+<button [disabled]="isDisabled"> Clique em mim </button>
+<!-- disabled propriedade do html que desabilita o botao
+ele recebe um texto "alt" da variavel  -->
+
+<br>
+
+<p [attr.arial-label]="isDisabled ? 'Botão desabilitado' : acessibilityText">
+    Texto qualquer...
+</p>
+<!-- attr.arial-label como se fosse um alt
+dentro dele um booleano que caso seja isDisabled retorne a string, se não retorna a outra variavel -->
+
+<img [src]="imageURL">
+
+<!--Event binding-->
+
+<h2>Exemplos Event Binding</h2>
+
+<button
+    (click)="clicouBotaoEmissor($event)"
+>Emitir informação de clique
+</button>
+
+<br><br>
+
+<button 
+    (click)="clicou($event)" 
+    (mouseenter)="passouOMouse()"
+>Clique ou passe o mouse</button>
+
+<br><br>
+
+<input type="text" 
+    [value]="valorDoInput" 
+    (keyup)="digitouAlgo($event)"
+>
+<br><br>
+<!-- basicamente, eventos como onclick, on é removido e o atributo é colocado entre parenteses -->
+<!-- $event retorna todas as informaçoes sobre aquele evento
+por exemplo, no (click) vai retornar no console essas informaçoes apos disparar essa função -->
+Valor do input: {{ valorDoInput }}
+
+
+<!-- Diretivas -->
+<h2>Diretivas</h2>
+
+<p>Valor atual dentro de deveExibir: {{ deveExibir }}</p>
+
+<!-- ao clicado exibe e retira o conteudo da variavel "deveExibir" -->
+<button (click)="trocarValor()"> Trocar valor</button>
+<div *ngIf="deveExibir; else elseBlock">ngIf</div>
+<ng-template #elseBlock>
+    Exibido ao "deveExibir" ser falso
+</ng-template>
+
+<div *ngIf="soma(5, 7) > 10">
+    Exibe baseado na soma
+</div>
+
+<ng-template [ngIf]="deveExibir">
+    <div>Conteudo</div>
+</ng-template>
+
+<div *ngIf="condition; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>ngTemplate Conteudo thenBlock (true)</ng-template>
+<ng-template #elseBlock>ngTemplate Conteudo elseBlock (false)</ng-template>
+
+<hr>
+
+<ul>
+    <li *ngFor="let item of listaFrutas">{{ item }}</li>
+    <!-- ngFor percorre e retorna os itens da array -->
+    <!-- item é uma variavel criada e chamada na hora -->
+</ul>
+
+<p *ngFor="let fruta of listaFrutas">{{ fruta }}</p>
+<!-- nesse caso está retornando toda a lista de frutas só que usando a tag <p> -->
+
+<ul>
+    <!-- let numerar = index  usado para numerar os itens da lista e +1 para adicionar um numero a numeração (para não começar do numero 0)-->
+    <!-- let primeiro = first  usado para retornar true caso seja o primeiro item da lista, caso contrario false -->
+    <!-- last as ultimo (outra forma de codar) true para o ultimo item e false para o resto -->
+    <li *ngFor="let carro of carrosLista; let numerar = index; let primeiro = first; last as ultimo">
+        {{ primeiro }} - {{ numerar + 1 }} - {{ carro.placa }} - {{ carro.cor }} - {{ ultimo }}
+    </li>
+    <!-- aqui foi colocado ".placa" e ".cor" após o item pois é um objeto que foi buscado, dai foi buscado apenas os itens do objeto -->
+</ul>

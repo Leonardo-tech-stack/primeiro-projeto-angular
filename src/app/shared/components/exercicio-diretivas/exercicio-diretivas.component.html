@@ -1,0 +1,16 @@
+<hr>
+<h2>Exercício diretivas</h2>
+
+<ul>
+    <li *ngFor="let memesAgrupados of memes">
+        {{ memesAgrupados.categoria }}
+
+        <div *ngFor="let meme of memesAgrupados.memes; let par = even">
+            <img [src]="PREFIXO_IMAGEM_URL + meme.imagemURL" *ngIf="par; else blocoPar">
+            <ng-template #blocoPar>
+                <h3>PAR</h3>
+            </ng-template>
+            <!-- foi feito assim porque como o angular inicia a contagem do 0 o impar será par e vice-versa -->
+        </div>
+    </li>
+</ul>

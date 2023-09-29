@@ -1,0 +1,38 @@
+<div class="container text-center p-5">
+
+    <!-- tela de carregamento do bootstrap -->
+    <div class="spinner-border" role="status" *ngIf="estaCarregando">
+        <span class="sr-only"></span>
+    </div>
+
+    <!-- caso retorne erro imprime isso -->
+    <div *ngIf="erroNoCarregamento">
+        <h2>Deu erro</h2>
+        <button (click)="carregarExtrato()">Tentar novamente</button>
+    </div>
+
+    <table class="table table-hover" *ngIf="!estaCarregando && !erroNoCarregamento">
+        <!-- vai retornar a tabela caso não estiver carregando e nem dado erro -->
+
+        <!-- paginamento -->
+        <button (click)="paginaAnterior()" [disabled]="pagina === 1">Página anterior</button>
+        <p>Página atual: {{ pagina }}</p>
+        <button (click)="proximaPagina()">Proxima página</button>
+
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Categoria</th>
+        </tr>
+    
+        <tr *ngFor="let transacao of transacoes">
+            <td>{{ transacao.id }}</td>
+            <td>{{ transacao.data | date }}</td>
+            <td>{{ transacao.descricao }}</td>
+            <td>{{ transacao.valor | currency:'BRL' }}</td>
+            <td>{{ transacao.categoria }}</td>
+        </tr>
+    </table>    
+</div>

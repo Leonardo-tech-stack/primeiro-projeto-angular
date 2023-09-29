@@ -1,0 +1,52 @@
+<!-- Pipes -->
+<!-- Pipes usado para formatação, por exemplo adicionar um cifrão a um valor que seja dinheiro, 
+ou limitar quantas casas de um valor numerico serão retornadas -->
+<h2>Pipes</h2>
+
+<p>Título: {{ filme.titulo | uppercase }}</p>
+<!-- tudo maiusculo -->
+
+<p>Avaliação: {{ filme.estrelas | number:'1.1-2'}}</p>
+<!-- formatação para números -->
+<!-- primeiro numero: minimo de numeros antes da vigula,
+segundo: minimo de numeros depois da virgula
+terceiro: maximo de numeros depois da virgula -->
+
+<p>Preço do aluguel: {{ filme.precoAluguel | currency:'BRL' }}</p>
+<!-- formatação para dinheiro, BRL para moeda brasileira -->
+
+<p>Data de lançamento: {{ filme.dataLancamento | date:'short' }}</p>
+<!-- organização de data, short=curto -->
+
+
+<!-- Exercicio Pipes -->
+<h3>Exercicio Pipes</h3>
+
+<ul *ngFor="let lista of compras">
+    <li>
+        Produto: <strong>{{ lista.produto | uppercase }}</strong>
+    </li>
+    <p>Valor: {{ lista.valor | currency:'BRL' }}</p>
+    <p>Quantidade: {{ lista.quantidade }}</p>
+
+    <ng-container *ngIf="lista.peso !== 0; else semPeso">
+        <p>Peso: {{ lista.peso | number:'1.1-2' }} Kg</p>
+    </ng-container>
+    <ng-template #semPeso>
+        <p>Peso: Sem peso</p>
+    </ng-template>   
+    
+    <p>Peso: {{ lista.peso > 0 ? (lista.peso | number:'1.1-2') + ' Kg' : 'Sem peso' }}</p>
+    <!-- Outra forma de booleano -->
+
+    <p>Peso: {{ getPesoFormatado(lista.peso) }}</p>
+    <!-- Outra forma, chamando a função já com o formato -->
+
+    <p>Data: {{ lista.data | date:'EEEE, dd \'de\' MMMM \'de\' yyyy, \'às\' HH:mm' }}</p>
+    <!-- na data foi usada a barra "\" para concatenar as strings "de" e "às" -->
+
+    <p>Data: {{ lista.data | date:'fullDate' }}, às {{ lista.data | date:'HH:mm' }}</p>
+    <!-- outra forma é concatenar pipes -->
+
+    <hr>
+</ul>

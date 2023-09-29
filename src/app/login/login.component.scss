@@ -1,0 +1,13 @@
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+// .ng-invalid.ng-touched {
+//     border-color: red;
+// }
+// ng-invalid e ng-touched, duas classes que ja verificam automaticamente se
+// o campo é válido ou foi tocado e retorna o estilo.
+// foi comentado porque pode ser usada classe com estilo automatico do angular, o "is-invalid"

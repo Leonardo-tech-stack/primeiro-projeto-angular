@@ -1,0 +1,62 @@
+<div class="text-center">
+    <!-- {{ email }} - {{ password }} -->
+
+    <!-- <p>E-mail inválido: {{ form.controls['email'].invalid }}</p> -->
+    <!-- o "?" usado para acessar o "invalid" caso o email exista, caso contrario retorna erro -->
+
+    <!-- <p>E-mail está tocado: {{ form.controls['email'].touched }}</p> -->
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="form-signin pt-5">
+        <!-- com #form="ngForm" eu busco as propriedades do FormsModule (para formmulários) importado no appmodule  -->
+
+        <div class="p-2">
+            <input type="email" class="form-control" 
+            placeholder="Email" name="email" 
+            [(ngModel)]="email" email required
+            [ngClass]="exibeErro('email', form) ? 'is-invalid' : ''"
+            #emailInput>
+            <!-- ngModel usa "name" pra controle do formulário -->
+            <!-- a propriedade separada "email" faz a verificalçao do campo se ele é um email válido -->
+            <!-- no ngclass, vai retornar os estilos da class is-invalid caso for invalido caso contrario nada 
+             (vinculada automaticamente com a classe invalid-feedback que ja vem com estilos) -->
+             <!-- #emailInput chama a variavel de focar (obs no arquivo .ts) -->
+
+            <div *ngIf="exibeErro('email', form)" class="invalid-feedback">E-mail inválido.</div>
+            <!-- chama a função de mensagem de erro para email -->
+            <!-- classe invalid-feedback, propriedade do angular para validações (msg de erro) vinculada ao is-invalid -->
+
+        </div>
+
+        <div class="p-2">
+            <input type="password" class="form-control" 
+            placeholder="Password" name="password" 
+            [(ngModel)]="password" required
+            [class.is-invalid]="exibeErro('password', form)"
+            #passwordInput>
+            <!-- na "class.is-invalid" foi feito a mesma coisa que no ngClass do email porem de forma diferente -->
+
+            <p *ngIf="exibeErro('password', form)" class="invalid-feedback">Senha inválida.</p>
+            <!-- chama a função de mensagem de erro para senha -->
+
+        </div>
+
+        <!-- mensagem de erro separada -->
+        <div>
+            <p *ngIf="erroNoLogin">Usuário ou senha inválidos</p>
+        </div>
+        
+        <div class="p-2">
+            <button 
+            class="btn btn-lg btn-primary btn-block" type="submit" 
+            [disabled]="estaCarregando"
+            >
+                Entrar
+            </button>
+            <!-- na parte [disabled], o botão fica desabilitado durante o carregamento  -->
+        </div>
+    </form>
+
+    <div *ngIf="estaCarregando" class="spinner-border" role="status">
+        <span class="sr-only"></span>
+    </div>
+</div>

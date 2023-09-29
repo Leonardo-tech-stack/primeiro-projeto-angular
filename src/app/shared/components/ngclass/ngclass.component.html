@@ -1,0 +1,16 @@
+<h2>Ngclass</h2>
+
+<button (click)="tornarVerde()">Tornar verde</button>
+<p [ngClass]="deveSerVerde ? 'verde' : 'vermelho'">Numero 1</p>
+<p [ngClass]="{
+    'verde': deveSerVerde,
+    'vermelho': !deveSerVerde
+}">Numero 2</p>
+
+<p [class]="deveSerVerde ? 'verde' : 'vermelho'">
+    Outra forma
+</p>
+
+<p [class.verde]="deveSerVerde">
+    Aqui a cor não se aplica a não ser que clique
+</p>

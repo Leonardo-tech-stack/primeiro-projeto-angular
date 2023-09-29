@@ -1,0 +1,50 @@
+<div class="container text-center p-5">
+
+    <!-- tela de carregamento do bootstrap -->
+    <div class="spinner-border" role="status" *ngIf="estaCarregando">
+        <span class="sr-only"></span>
+    </div>
+
+    <!-- caso retorne erro imprime isso -->
+    <div *ngIf="erroNoCarregamento">
+        <h2>Deu erro</h2>
+        <button (click)="carregarContatos()">Tentar novamente</button>
+    </div>
+
+    <button class="btn btn-primary m-1" (click)="novoContato()">Novo contato</button>
+
+    <table class="table table-hover" *ngIf="!estaCarregando && !erroNoCarregamento">
+        <!-- vai retornar a tabela caso não estiver carregando e nem dado erro -->
+
+        <!-- paginamento -->
+        <!-- <button (click)="paginaAnterior()" [disabled]="pagina === 1">Página anterior</button>
+        <p>Página atual: {{ pagina }}</p>
+        <button (click)="proximaPagina()">Proxima página</button> -->
+
+        <tr>
+            <!-- <th>ID</th> -->
+            <th>Nome</th>
+            <!-- <th>CPF</th>
+            <th>Banco</th>
+            <th>Agência</th>
+            <th>Conta</th> -->
+            <th>Ações</th>
+        </tr>
+    
+        <tr *ngFor="let contato of contatos">
+            <!-- <td>{{ contato.id }}</td> -->
+            <td>{{ contato.nome }}</td>
+            <!-- <td>{{ contato.cpf }}</td>
+            <td>{{ contato.banco }}</td>
+            <td>{{ contato.ag }}</td>
+            <td>{{ contato.cc }}</td> -->
+
+            <td>
+                <button class="btn btn-primary m-1" (click)="irParaDetalhes(contato.id)">Ver detalhes</button>
+                <button class="btn btn-primary m-1" (click)="irParaEditar(contato.id)">Editar</button>
+                <button class="btn btn-danger m-1" (click)="deletarContato(contato.id)">Deletar</button>
+            </td>
+        </tr>
+    </table>    
+</div>
+

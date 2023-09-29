@@ -1,0 +1,30 @@
+<header class="header">
+    <h2 class="header__title"> {{ title }} </h2>
+
+    <ul class="nav-bar-list">
+        <li>
+            <!-- <a routerLink="home" routerLinkActive="ativado" [routerLinkActiveOptions]="{ exact: true }">Home</a> -->
+            <a routerLink="/home" routerLinkActive="ativado">Home</a>
+            <!-- routerLink usado para o roteamento no lugar de href para não atualizar a página -->
+            <!-- routerLinkActive para aplicar um estilo caso esteja no componente selecionado -->
+            <!-- routerLinkActivateOptions (padrão do angular) é uma opção adicionada para que o estilo ative somente na rota selecionada exata
+            por exemplo, caso a rota home seja só "/", o angular não vai confundir rotas do tipo "/login" -->
+        </li>
+        <li>
+            <a routerLink="/extrato" routerLinkActive="ativado">Extrato</a>
+        </li>
+        <li>
+            <a routerLink="/contatos" routerLinkActive="ativado">Contatos</a>
+        </li>
+        <li>
+            <button class="btn btn-dark" (click)="logout()">Sair</button>
+        </li>
+    </ul>
+
+    <!-- <p>
+        {{ texto }}
+    </p>
+    <p>
+        {{ numero }}
+    </p> -->
+</header>
